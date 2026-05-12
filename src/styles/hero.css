@@ -1,0 +1,109 @@
+.hero{
+  padding-top:160px;
+}
+
+.hero-grid{
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  align-items:center;
+  gap:60px;
+}
+
+.hero-title{
+  font-size:clamp(4rem,9vw,8rem);
+  line-height:.95;
+  letter-spacing:-.06em;
+  margin:24px 0;
+}
+
+.hero-title span{
+  background:
+    linear-gradient(
+      135deg,
+      #fff,
+      var(--gold),
+      #ffb800
+    );
+
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.hero-text{
+  color:var(--muted);
+
+  font-size:1.2rem;
+
+  line-height:1.9;
+
+  max-width:760px;
+}
+
+.hero-actions{
+  display:flex;
+  gap:18px;
+  flex-wrap:wrap;
+
+  margin-top:40px;
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+
+  padding:18px 28px;
+
+  border-radius:18px;
+
+  border:1px solid rgba(255,255,255,.08);
+
+  transition:.3s;
+
+  font-weight:700;
+}
+
+.btn:hover{
+  transform:translateY(-3px);
+}
+
+.btn-primary{
+  background:
+    linear-gradient(
+      135deg,
+      var(--gold),
+      var(--gold-2)
+    );
+
+  color:black;
+
+  box-shadow:
+    0 10px 30px rgba(248,196,79,.25);
+}
+
+.btn-secondary{
+  background:rgba(255,255,255,.05);
+
+  backdrop-filter:blur(20px);
+}
+
+.hero-badges{
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+
+  margin-top:40px;
+}
+
+.hero-badges span{
+  padding:14px 20px;
+
+  border-radius:18px;
+
+  background:rgba(255,255,255,.04);
+
+  border:1px solid rgba(255,255,255,.08);
+
+  backdrop-filter:blur(20px);
+}

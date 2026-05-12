@@ -1,0 +1,41 @@
+.bg-grid{
+  position:fixed;
+  inset:0;
+
+  background-image:
+    linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+
+  background-size:60px 60px;
+
+  opacity:.25;
+
+  pointer-events:none;
+}
+
+.bg-orb{
+  position:fixed;
+  border-radius:999px;
+  filter:blur(120px);
+  pointer-events:none;
+}
+
+.bg-orb-a{
+  top:-200px;
+  left:-200px;
+
+  width:600px;
+  height:600px;
+
+  background:rgba(76,242,255,.14);
+}
+
+.bg-orb-b{
+  bottom:-200px;
+  right:-200px;
+
+  width:600px;
+  height:600px;
+
+  background:rgba(139,92,246,.16);
+}

@@ -1,0 +1,21 @@
+:root{
+  --bg:#050816;
+  --bg2:#090d1f;
+
+  --text:#f5f7ff;
+  --muted:#9ca7c7;
+
+  --gold:#f8c44f;
+  --gold-2:#ffda7b;
+
+  --blue:#4da2ff;
+  --cyan:#4cf2ff;
+  --purple:#8b5cf6;
+
+  --line:rgba(255,255,255,.08);
+
+  --shadow:
+    0 20px 60px rgba(0,0,0,.45);
+
+  --container:1280px;
+}
