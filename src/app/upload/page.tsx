@@ -3,7 +3,7 @@
 import Navbar from "@/components/navbar/Navbar";
 import BackgroundEffects from "@/components/layout/BackgroundEffects";
 
-import { UploadForm } from "@/components/upload-zone/upload-form";
+import { UploadForm } from "@/components/upload/upload-form";
 
 export default function UploadPage() {
   return (

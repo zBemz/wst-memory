@@ -1,200 +1,243 @@
-"use client"
+"use client";
 
-import { MemoryList, type MemoryItem } from "@/components/wst/memory-list"
-import { MemoryStats } from "@/components/wst/memory-stats"
-import { Search, Plus, LayoutGrid, LayoutList, ChevronLeft, ChevronRight } from "lucide-react"
-import { useState } from "react"
-import { cn } from "@/lib/utils"
+import { useMemo, useState } from "react";
 
-// Mock data
+import {
+  Search,
+  Plus,
+  LayoutGrid,
+  LayoutList,
+  ChevronLeft,
+  ChevronRight,
+  Filter,
+} from "lucide-react";
+
+import { cn } from "@/lib/utils";
+
+import MemoryList, {
+  type MemoryItem,
+} from "@/components/dashboard/MemoryList";
+
+import MemoryGrid from "@/components/dashboard/MemoryGrid";
+
+import MemoryStats from "@/components/dashboard/MemoryStats";
+
 const memories: MemoryItem[] = [
   {
     id: "1",
-    name: "Neural Network Research.pdf",
-    type: "pdf",
-    size: "2.3 MB",
-    blobId: "bafk...7x7fy",
-    uploaded: "2m ago",
+    name: "Neural_Architecture_v2.png",
+    type: "image",
+    size: "2.4 MB",
+    blobId: "bafkrei12axxx",
+    uploaded: "2 hours ago",
     status: "success",
+    thumbnail:
+      "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400",
   },
   {
     id: "2",
-    name: "Deep Learning Notes.txt",
-    type: "txt",
-    size: "1.5 KB",
-    blobId: "bafk...3npgn",
-    uploaded: "10m ago",
+    name: "Project_Roadmap_Q3.pdf",
+    type: "pdf",
+    size: "1.1 MB",
+    blobId: "bafkreixxxxx2",
+    uploaded: "Yesterday",
     status: "success",
   },
   {
     id: "3",
-    name: "AI Conversation Log.txt",
-    type: "txt",
-    size: "1.8 KB",
-    blobId: "bafk...6u3jp",
-    uploaded: "1h ago",
+    name: "AI Voice Memory.m4a",
+    type: "audio",
+    size: "5.7 MB",
+    blobId: "bafkreixxxxx3",
+    uploaded: "3 days ago",
     status: "success",
   },
   {
     id: "4",
-    name: "Project Brainstorm.pdf",
-    type: "pdf",
-    size: "5.4 MB",
-    blobId: "bafk...9e1e",
-    uploaded: "2h ago",
+    name: "Conversation_Context.txt",
+    type: "text",
+    size: "82 KB",
+    blobId: "bafkreixxxxx4",
+    uploaded: "1 week ago",
     status: "success",
   },
   {
     id: "5",
-    name: "Design Inspiration.jpg",
-    type: "jpg",
-    size: "1.2 MB",
-    blobId: "bafk...2j1fr",
-    uploaded: "3h ago",
+    name: "Research_Document.pdf",
+    type: "pdf",
+    size: "12.2 MB",
+    blobId: "bafkreixxxxx5",
+    uploaded: "2 weeks ago",
     status: "success",
-    thumbnail: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop",
   },
   {
     id: "6",
-    name: "Voice Memo: Idea for AI Agent.m4a",
-    type: "m4a",
-    size: "3.1 MB",
-    blobId: "bafk...5yp0c",
-    uploaded: "5h ago",
+    name: "Memory_Snapshot.png",
+    type: "image",
+    size: "3.8 MB",
+    blobId: "bafkreixxxxx6",
+    uploaded: "1 month ago",
     status: "success",
+    thumbnail:
+      "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400",
   },
-]
+];
 
 export default function MemoriesPage() {
-  const [viewMode, setViewMode] = useState<"list" | "grid">("list")
-  const [currentPage, setCurrentPage] = useState(1)
+  const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
+
+  const [search, setSearch] = useState("");
+
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const filteredMemories = useMemo(() => {
+    return memories.filter((memory) =>
+      memory.name
+        .toLowerCase()
+        .includes(search.toLowerCase())
+    );
+  }, [search]);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+      <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-foreground">Your Memories</h1>
-          <p className="text-muted-foreground mt-1">
-            Browse, search, and manage all your stored memories.
+          <h1 className="text-4xl font-black tracking-tight">
+            My Memories
+          </h1>
+
+          <p className="text-muted-foreground mt-3 text-lg max-w-2xl">
+            Browse, search, and manage all your decentralized
+            AI memories stored on Walrus + Sui.
           </p>
         </div>
-        <button className="flex items-center gap-2 px-4 py-2.5 bg-primary text-primary-foreground rounded-lg font-medium text-sm hover:opacity-90 transition-opacity w-fit">
-          <Plus className="w-4 h-4" />
-          New Memory
+
+        <button className="inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-yellow-400 to-amber-500 px-6 py-4 text-black font-bold shadow-xl transition hover:scale-[1.02] glow-primary w-fit">
+          <Plus className="w-5 h-5" />
+          Upload New Memory
         </button>
       </div>
 
-      <div className="grid xl:grid-cols-[1fr_300px] gap-6">
-        <div className="space-y-4">
+      <div className="grid gap-8 xl:grid-cols-[1fr_320px]">
+        {/* Main Content */}
+        <div className="space-y-6">
           {/* Filters */}
-          <div className="flex flex-col sm:flex-row gap-4">
-            {/* Search */}
-            <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-              <input
-                type="text"
-                placeholder="Search memories..."
-                className="w-full pl-10 pr-4 py-2.5 bg-card border border-border rounded-lg text-foreground placeholder:text-muted-foreground outline-none focus:ring-2 focus:ring-primary/20"
-              />
-            </div>
+          <div className="glass rounded-[28px] border border-border p-5 lg:p-6">
+            <div className="flex flex-col gap-4 xl:flex-row xl:items-center">
+              {/* Search */}
+              <div className="relative flex-1">
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
 
-            {/* Type Filter */}
-            <select className="px-4 py-2.5 bg-card border border-border rounded-lg text-foreground outline-none focus:ring-2 focus:ring-primary/20">
-              <option>All Types</option>
-              <option>Images</option>
-              <option>Documents</option>
-              <option>Audio</option>
-              <option>Video</option>
-            </select>
+                <input
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  type="text"
+                  placeholder="Search memories..."
+                  className="w-full rounded-2xl border border-border bg-background/70 pl-12 pr-4 py-4 outline-none transition focus:border-primary focus:ring-4 focus:ring-primary/10"
+                />
+              </div>
 
-            {/* Sort */}
-            <select className="px-4 py-2.5 bg-card border border-border rounded-lg text-foreground outline-none focus:ring-2 focus:ring-primary/20">
-              <option>Sort: Newest</option>
-              <option>Sort: Oldest</option>
-              <option>Sort: Name</option>
-              <option>Sort: Size</option>
-            </select>
+              {/* Type Filter */}
+              <div className="flex items-center gap-3">
+                <button className="inline-flex items-center gap-2 rounded-2xl border border-border bg-card px-5 py-4 font-medium transition hover:bg-muted">
+                  <Filter className="w-4 h-4" />
+                  Filters
+                </button>
 
-            {/* View Toggle */}
-            <div className="flex border border-border rounded-lg overflow-hidden">
-              <button
-                onClick={() => setViewMode("list")}
-                className={cn(
-                  "p-2.5 transition-colors",
-                  viewMode === "list" ? "bg-muted" : "bg-card hover:bg-muted/50"
-                )}
-              >
-                <LayoutList className="w-4 h-4 text-foreground" />
-              </button>
-              <button
-                onClick={() => setViewMode("grid")}
-                className={cn(
-                  "p-2.5 transition-colors",
-                  viewMode === "grid" ? "bg-muted" : "bg-card hover:bg-muted/50"
-                )}
-              >
-                <LayoutGrid className="w-4 h-4 text-foreground" />
-              </button>
+                <select className="rounded-2xl border border-border bg-card px-5 py-4 outline-none transition focus:border-primary">
+                  <option>All Types</option>
+                  <option>Images</option>
+                  <option>Documents</option>
+                  <option>Audio</option>
+                  <option>Video</option>
+                </select>
+              </div>
+
+              {/* View Toggle */}
+              <div className="flex overflow-hidden rounded-2xl border border-border bg-card">
+                <button
+                  onClick={() => setViewMode("list")}
+                  className={cn(
+                    "p-4 transition-all",
+                    viewMode === "list"
+                      ? "bg-primary text-primary-foreground"
+                      : "hover:bg-muted"
+                  )}
+                >
+                  <LayoutList className="w-5 h-5" />
+                </button>
+
+                <button
+                  onClick={() => setViewMode("grid")}
+                  className={cn(
+                    "p-4 transition-all",
+                    viewMode === "grid"
+                      ? "bg-primary text-primary-foreground"
+                      : "hover:bg-muted"
+                  )}
+                >
+                  <LayoutGrid className="w-5 h-5" />
+                </button>
+              </div>
             </div>
           </div>
 
-          {/* Memory List */}
-          <MemoryList memories={memories} />
+          {/* Content */}
+          <div>
+            {viewMode === "grid" ? (
+              <MemoryGrid memories={filteredMemories} />
+            ) : (
+              <MemoryList memories={filteredMemories} />
+            )}
+          </div>
 
           {/* Pagination */}
-          <div className="flex items-center justify-between">
+          <div className="glass rounded-[24px] border border-border px-5 py-4 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-sm text-muted-foreground">
-              Showing 1 to 6 of 128 results
+              Showing 1 to 6 of 128 memories
             </p>
+
             <div className="flex items-center gap-2">
               <button
-                onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
-                className="p-2 bg-card border border-border rounded-lg hover:bg-muted transition-colors"
+                onClick={() =>
+                  setCurrentPage(Math.max(1, currentPage - 1))
+                }
+                className="w-10 h-10 rounded-xl border border-border bg-card flex items-center justify-center hover:bg-muted transition"
               >
-                <ChevronLeft className="w-4 h-4 text-foreground" />
+                <ChevronLeft className="w-4 h-4" />
               </button>
+
               {[1, 2, 3].map((page) => (
                 <button
                   key={page}
                   onClick={() => setCurrentPage(page)}
                   className={cn(
-                    "w-9 h-9 rounded-lg text-sm font-medium transition-colors",
+                    "w-10 h-10 rounded-xl text-sm font-semibold transition",
                     currentPage === page
-                      ? "bg-primary/10 text-primary border border-primary"
-                      : "bg-card border border-border hover:bg-muted text-foreground"
+                      ? "bg-primary text-primary-foreground shadow-lg"
+                      : "border border-border bg-card hover:bg-muted"
                   )}
                 >
                   {page}
                 </button>
               ))}
-              <span className="text-muted-foreground">...</span>
+
               <button
-                onClick={() => setCurrentPage(22)}
-                className={cn(
-                  "w-9 h-9 rounded-lg text-sm font-medium transition-colors",
-                  currentPage === 22
-                    ? "bg-primary/10 text-primary border border-primary"
-                    : "bg-card border border-border hover:bg-muted text-foreground"
-                )}
+                onClick={() => setCurrentPage(currentPage + 1)}
+                className="w-10 h-10 rounded-xl border border-border bg-card flex items-center justify-center hover:bg-muted transition"
               >
-                22
-              </button>
-              <button
-                onClick={() => setCurrentPage(Math.min(22, currentPage + 1))}
-                className="p-2 bg-card border border-border rounded-lg hover:bg-muted transition-colors"
-              >
-                <ChevronRight className="w-4 h-4 text-foreground" />
+                <ChevronRight className="w-4 h-4" />
               </button>
             </div>
           </div>
         </div>
 
         {/* Sidebar */}
-        <div className="hidden xl:block">
+        <aside className="hidden xl:block">
           <MemoryStats />
-        </div>
+        </aside>
       </div>
     </div>
-  )
+  );
 }

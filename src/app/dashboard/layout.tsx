@@ -1,18 +1,18 @@
-import { Sidebar } from "@/components/wst/sidebar"
-import { TopBar } from "@/components/wst/top-bar"
+import { Sidebar } from "@/components/dashboard/Sidebar";
+import { TopBar } from "@/components/dashboard/TopBar";
 
 export default function DashboardLayout({
   children,
-}: {
-  children: React.ReactNode
-}) {
+}: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="flex h-screen bg-[#050505] text-white overflow-hidden">
       <Sidebar />
-      <div className="lg:pl-64">
+      <div className="flex-1 flex flex-col">
         <TopBar />
-        <main className="p-6">{children}</main>
+        <main className="flex-1 overflow-auto p-6 lg:p-8 bg-[#0a0a0a]">
+          {children}
+        </main>
       </div>
     </div>
-  )
+  );
 }
