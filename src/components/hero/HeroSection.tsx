@@ -1,71 +1,58 @@
-import BrainVisual from "./BrainVisual";
-
-import Reveal from "@/components/ui/Reveal";
+import BrainVisual from './BrainVisual';
 
 export default function HeroSection() {
   return (
-    <section
-      className="hero section"
-      id="hero"
-    >
-      <div className="container hero-grid">
-        <Reveal className="hero-copy">
-          <div className="eyebrow">
-            AI-native decentralized memory
-            protocol
+    <section className="hero py-20 md:py-32 relative overflow-hidden bg-gradient-to-br from-slate-50 to-amber-50">
+      <div className="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+        
+        {/* Left Content */}
+        <div className="space-y-8">
+          <div className="inline-flex items-center gap-2 px-5 py-2 bg-amber-100 text-amber-700 rounded-full text-sm font-medium">
+            AI-NATIVE DECENTRALIZED MEMORY PROTOCOL
           </div>
 
-          <h1>
-            Own Your <span>AI Memory</span>
+          <h1 className="text-6xl md:text-7xl font-bold leading-none tracking-tighter">
+            Own Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-yellow-400">AI Memory</span>
           </h1>
 
-          <p className="lead">
-            WST-Memory enables users to
-            store files, conversations,
-            AI memories, and intelligent
-            data on decentralized
-            infrastructure powered by
-            Walrus, secured by Sui, and
-            connected through Tatum RPC.
+          <p className="text-xl text-gray-600 max-w-lg">
+            WST-Memory enables you to store, own, and interact with your memories, files, 
+            and digital identity on a decentralized infrastructure powered by Walrus, 
+            secured by Sui, and connected through Tatum RPC.
           </p>
 
-          <div className="hero-actions">
-            <a
-              className="btn btn-primary"
-              href="#dashboard"
-            >
+          <div className="flex flex-wrap gap-4">
+            <button className="btn-primary px-10 py-4 rounded-2xl text-lg font-semibold">
               Connect Wallet
-            </a>
-
-            <a
-              className="btn btn-secondary"
-              href="#dashboard"
-            >
+            </button>
+            <button className="border-2 border-gray-300 hover:border-amber-400 px-8 py-4 rounded-2xl text-lg font-medium">
               Upload Memory
-            </a>
-
-            <a
-              className="btn btn-ghost"
-              href="#architecture"
-            >
+            </button>
+            <button className="border-2 border-gray-300 hover:border-amber-400 px-8 py-4 rounded-2xl text-lg font-medium">
               Launch App →
-            </a>
+            </button>
           </div>
 
-          <div
-            className="hero-badges"
-            aria-label="Built on"
-          >
-            <span>Walrus</span>
-            <span>Sui</span>
-            <span>Tatum</span>
-            <span>MCP</span>
+          <div className="flex gap-8 pt-6">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 rounded-xl bg-blue-600 flex items-center justify-center text-white text-xs font-bold">W</div>
+              <span className="font-medium">Walrus</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 rounded-xl bg-blue-500 flex items-center justify-center text-white text-xs font-bold">S</div>
+              <span className="font-medium">Sui</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 rounded-xl bg-purple-600 flex items-center justify-center text-white text-xs font-bold">T</div>
+              <span className="font-medium">Tatum</span>
+            </div>
           </div>
-        </Reveal>
+        </div>
 
-        <Reveal>
+        {/* Right Visual */}
+        <div className="flex justify-center">
           <BrainVisual />
-        </Reveal>
+        </div>
       </div>
     </section>
   );

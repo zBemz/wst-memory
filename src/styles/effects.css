@@ -1,23 +1,58 @@
-.glass{
-  background:rgba(255,255,255,.04);
+.bg-grid{
 
-  border:1px solid rgba(255,255,255,.08);
+  position:fixed;
 
-  backdrop-filter:blur(24px);
+  inset:0;
 
-  box-shadow:var(--shadow);
+  pointer-events:none;
+
+  background-image:
+    linear-gradient(
+      rgba(255,255,255,.02) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255,255,255,.02) 1px,
+      transparent 1px
+    );
+
+  background-size:60px 60px;
+
+  opacity:.35;
 }
 
-.glow{
-  box-shadow:
-    0 0 40px rgba(248,196,79,.25);
+.bg-orb{
+
+  position:fixed;
+
+  border-radius:999px;
+
+  filter:blur(120px);
+
+  pointer-events:none;
 }
 
-.reveal{
-  opacity:0;
-  transform:translateY(30px);
+.bg-orb-a{
+
+  width:700px;
+  height:700px;
+
+  top:-240px;
+  left:-240px;
+
+  background:
+    rgba(250,204,21,.18);
 }
 
-.reveal.visible{
-  animation:rise .8s ease forwards;
+.bg-orb-b{
+
+  width:700px;
+  height:700px;
+
+  bottom:-240px;
+  right:-240px;
+
+  background:
+    rgba(251,191,36,.14);
 }

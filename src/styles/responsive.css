@@ -1,0 +1,44 @@
+@media(max-width:1080px){
+
+  .hero-grid{
+    grid-template-columns:1fr;
+  }
+
+  .nav{
+    display:none;
+  }
+
+  .hero{
+    padding-top:140px;
+  }
+
+  .hero h1{
+    font-size:4rem;
+  }
+}
+
+@media(max-width:720px){
+
+  .container{
+    width:min(
+      var(--container),
+      calc(100% - 24px)
+    );
+  }
+
+  .section{
+    padding:80px 0;
+  }
+
+  .hero h1{
+    font-size:3rem;
+  }
+
+  .hero-actions{
+    flex-direction:column;
+  }
+
+  .hero-visual{
+    height:520px;
+  }
+}

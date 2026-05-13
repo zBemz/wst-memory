@@ -1,28 +1,43 @@
 "use client";
 
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import "@mysten/dapp-kit/dist/index.css";
+
 import {
   SuiClientProvider,
   WalletProvider,
 } from "@mysten/dapp-kit";
 
+import {
+  QueryClient,
+  QueryClientProvider,
+} from "@tanstack/react-query";
+
 const queryClient = new QueryClient();
 
 const networks = {
   mainnet: {
-    url: process.env.NEXT_PUBLIC_TATUM_RPC!,
+    url: "https://fullnode.mainnet.sui.io",
+  },
+
+  testnet: {
+    url: "https://fullnode.testnet.sui.io",
   },
 };
 
-export function Providers({
+export default function Providers({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
     <QueryClientProvider client={queryClient}>
-      <SuiClientProvider networks={networks} defaultNetwork="mainnet">
-        <WalletProvider autoConnect>
+      <SuiClientProvider
+        networks={networks}
+        defaultNetwork="mainnet"
+      >
+        <WalletProvider
+          autoConnect
+        >
           {children}
         </WalletProvider>
       </SuiClientProvider>

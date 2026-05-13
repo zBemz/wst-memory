@@ -1,59 +1,26 @@
-import Reveal from "@/components/ui/Reveal";
-
-const architectureLayers = [
-  "Frontend App",
-  "Walrus Storage Layer",
-  "Sui Smart Contracts",
-  "Tatum RPC Gateway",
-  "WST AI Agent System",
-];
-
 export default function ArchitectureFlow() {
+  const items = [
+    { name: "Frontend App", icon: "🖥️" },
+    { name: "Walrus Storage Layer", icon: "📦" },
+    { name: "Sui Smart Contracts", icon: "🔗" },
+    { name: "Tatum RPC Gateway", icon: "⚡" },
+    { name: "WST AI Agent System", icon: "🤖" },
+  ];
+
   return (
-    <section
-      className="section architecture"
-      id="architecture"
-    >
-      <div className="container">
-        <Reveal className="section-heading">
-          <div className="eyebrow">
-            Architecture
-          </div>
-
-          <h2>
-            Built on Decentralized
-            Infrastructure
-          </h2>
-        </Reveal>
-
-        <Reveal className="architecture-flow">
-          {architectureLayers.map(
-            (layer, index) => (
-              <>
-                <div
-                  key={layer}
-                  className={`arch-node ${
-                    index ===
-                    architectureLayers.length -
-                      1
-                      ? "accent"
-                      : ""
-                  }`}
-                >
-                  {layer}
-                </div>
-
-                {index !==
-                  architectureLayers.length -
-                    1 && (
-                  <div className="arch-arrow">
-                    →
-                  </div>
-                )}
-              </>
-            )
-          )}
-        </Reveal>
+    <section className="py-24 bg-gray-50">
+      <div className="container mx-auto px-6 text-center">
+        <div className="eyebrow mb-4">ARCHITECTURE</div>
+        <h2 className="text-5xl font-bold mb-4">Built on Decentralized Infrastructure</h2>
+        
+        <div className="flex flex-wrap justify-center items-center gap-6 mt-16">
+          {items.map((item, i) => (
+            <div key={i} className="feature-card px-8 py-6 min-w-[180px]">
+              <div className="text-4xl mb-4">{item.icon}</div>
+              <p className="font-semibold">{item.name}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

@@ -1,128 +1,57 @@
 export default function Footer() {
   return (
-    <footer className="site-footer">
-      <div className="container footer-grid">
-        <div>
-          <a
-            className="brand footer-brand"
-            href="#hero"
-          >
-            <span
-              className="brand-mark"
-              aria-hidden="true"
-            >
-              <svg
-                viewBox="0 0 64 64"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M32 4L45 12V28L32 36L19 28V12L32 4Z"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                />
+    <footer className="bg-gray-900 text-white py-20">
+      <div className="container mx-auto px-6">
+        <div className="grid md:grid-cols-12 gap-12">
+          {/* Brand */}
+          <div className="md:col-span-5">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-10 h-10 bg-gradient-to-br from-amber-400 to-yellow-500 rounded-2xl flex items-center justify-center text-xl font-bold">WST</div>
+              <div>
+                <strong className="text-2xl">WST-MEMORY</strong>
+                <small className="block text-amber-400">WAVE SYNAPTIC TRANSFER</small>
+              </div>
+            </div>
+            <p className="text-gray-400 max-w-md">
+              AI-native decentralized memory protocol built on Walrus, secured by Sui, and connected through Tatum RPC.
+            </p>
+          </div>
 
-                <path
-                  d="M32 36V60"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                />
+          {/* Links */}
+          <div className="md:col-span-2">
+            <h4 className="font-semibold mb-4">Product</h4>
+            <ul className="space-y-3 text-gray-400">
+              <li><a href="#features">Features</a></li>
+              <li><a href="/dashboard">Dashboard</a></li>
+              <li><a href="/upload">Upload</a></li>
+            </ul>
+          </div>
 
-                <path
-                  d="M19 28L32 36L45 28"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                />
+          <div className="md:col-span-2">
+            <h4 className="font-semibold mb-4">Resources</h4>
+            <ul className="space-y-3 text-gray-400">
+              <li>Documentation</li>
+              <li>GitHub</li>
+              <li>Blog</li>
+            </ul>
+          </div>
 
-                <circle
-                  cx="32"
-                  cy="32"
-                  r="8"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                />
-              </svg>
-            </span>
-
-            <span>
-              <strong>
-                WST-MEMORY
-              </strong>
-
-              <small>
-                WAVE SYNAPTIC
-                TRANSFER
-              </small>
-            </span>
-          </a>
-
-          <p className="footer-copy">
-            AI-native decentralized
-            memory protocol built on
-            Walrus, Sui, Tatum, and
-            MCP.
-          </p>
+          <div className="md:col-span-3">
+            <h4 className="font-semibold mb-4">Stay Updated</h4>
+            <div className="flex gap-2">
+              <input 
+                type="email" 
+                placeholder="Enter your email" 
+                className="bg-gray-800 border border-gray-700 rounded-2xl px-5 py-3 flex-1 focus:outline-none focus:border-amber-400"
+              />
+              <button className="bg-amber-400 text-black px-8 rounded-2xl font-semibold">→</button>
+            </div>
+          </div>
         </div>
 
-        <div>
-          <h3>Links</h3>
-
-          <a href="#features">
-            GitHub
-          </a>
-
-          <a href="#features">
-            Walrus
-          </a>
-
-          <a href="#features">
-            Sui
-          </a>
-
-          <a href="#features">
-            Tatum
-          </a>
+        <div className="border-t border-gray-800 mt-16 pt-8 text-center text-gray-500 text-sm">
+          © 2025 WST-Memory. All rights reserved. Built for Sui + Walrus Hackathon.
         </div>
-
-        <div>
-          <h3>Resources</h3>
-
-          <a href="#architecture">
-            Documentation
-          </a>
-
-          <a href="#future">
-            Privacy Policy
-          </a>
-
-          <a href="#future">
-            Terms of Service
-          </a>
-        </div>
-
-        <div>
-          <h3>Stay Updated</h3>
-
-          <form className="newsletter">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              aria-label="Email address"
-            />
-
-            <button
-              className="btn btn-primary"
-              type="button"
-            >
-              →
-            </button>
-          </form>
-        </div>
-      </div>
-
-      <div className="container copyright">
-        © 2025 WST-Memory. All rights
-        reserved.
       </div>
     </footer>
   );

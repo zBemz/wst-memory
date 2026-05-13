@@ -1,7 +1,13 @@
 "use client";
 
-import { ConnectButton } from "@mysten/dapp-kit";
+import {
+  ConnectButton,
+} from "@mysten/dapp-kit";
 
-export function ConnectWallet() {
-  return <ConnectButton />;
+export default function ConnectWallet() {
+  return (
+    <div className="wallet-wrap">
+      <ConnectButton />
+    </div>
+  );
 }

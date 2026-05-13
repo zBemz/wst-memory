@@ -1,99 +1,76 @@
-import Reveal from "@/components/ui/Reveal";
-
-import StatsGrid from "./StatsGrid";
-import RecentMemories from "./RecentMemories";
-import StorageAnalytics from "./StorageAnalytics";
-import TransactionPanel from "./TransactionPanel";
-import AssistantPanel from "./AssistantPanel";
-
 export default function DashboardPreview() {
   return (
     <section
-      className="section dashboard"
+      className="section"
       id="dashboard"
     >
       <div className="container">
-        <Reveal className="section-heading">
-          <div className="eyebrow">
-            Futuristic Dashboard
-          </div>
 
-          <h2>
-            AI-Native Decentralized
-            Operating System
-          </h2>
-        </Reveal>
+        <div className="dashboard-shell">
 
-        <Reveal className="dashboard-shell">
           <aside className="sidebar">
+
             <div className="sidebar-brand">
-              WST-MEMORY
+              WST Dashboard
             </div>
 
-            <a
-              className="side-link active"
-              href="#dashboard"
-            >
+            <a className="side-link active">
               Dashboard
             </a>
 
-            <a
-              className="side-link"
-              href="#dashboard"
-            >
+            <a className="side-link">
               Memories
             </a>
 
-            <a
-              className="side-link"
-              href="#dashboard"
-            >
+            <a className="side-link">
               Upload
             </a>
 
-            <a
-              className="side-link"
-              href="#dashboard"
-            >
+            <a className="side-link">
               AI Assistant
             </a>
 
-            <a
-              className="side-link"
-              href="#dashboard"
-            >
-              Activity
-            </a>
-
-            <a
-              className="side-link"
-              href="#dashboard"
-            >
-              Analytics
-            </a>
-
-            <a
-              className="side-link"
-              href="#dashboard"
-            >
-              Settings
-            </a>
           </aside>
 
           <div className="dashboard-main">
-            <StatsGrid />
+
+            <div className="stats-grid">
+
+              <div className="stat-card">
+                <span>Total Memories</span>
+                <strong>128</strong>
+              </div>
+
+              <div className="stat-card">
+                <span>Storage Used</span>
+                <strong>2.45 GB</strong>
+              </div>
+
+              <div className="stat-card">
+                <span>Walrus Blobs</span>
+                <strong>342</strong>
+              </div>
+
+              <div className="stat-card">
+                <span>Transactions</span>
+                <strong>276</strong>
+              </div>
+
+            </div>
 
             <div className="dashboard-grid">
-              <RecentMemories />
 
-              <StorageAnalytics />
+              <div className="panel" />
+              <div className="panel" />
+              <div className="panel" />
+              <div className="panel" />
 
-              <TransactionPanel />
-
-              <AssistantPanel />
             </div>
+
           </div>
-        </Reveal>
+
+        </div>
+
       </div>
     </section>
   );

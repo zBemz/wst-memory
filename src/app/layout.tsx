@@ -1,56 +1,21 @@
 import type { Metadata } from "next";
-
 import "./globals.css";
+import Providers from "./providers";
 
 export const metadata: Metadata = {
-  title:
-    "WST-Memory — Wave Synaptic Transfer",
-
-  description:
-    "AI-native decentralized memory protocol powered by Walrus, Sui, Tatum RPC, and AI retrieval.",
-
-  keywords: [
-    "WST-Memory",
-    "Walrus",
-    "Sui",
-    "Tatum",
-    "AI Memory",
-    "Decentralized Storage",
-    "Web3 AI",
-  ],
-
-  authors: [
-    {
-      name: "WST-Memory",
-    },
-  ],
-
-  openGraph: {
-    title:
-      "WST-Memory — Wave Synaptic Transfer",
-
-    description:
-      "AI-native decentralized memory infrastructure built on Walrus and Sui.",
-
-    url: "https://wst-memory.vercel.app",
-
-    siteName: "WST-Memory",
-
-    locale: "en_US",
-
-    type: "website",
-  },
+  title: "WST-MEMORY — Wave Synaptic Transfer",
+  description: "AI-native decentralized memory protocol powered by Walrus • Sui • Tatum",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="en">
-      <body>
-        {children}
+    <html lang="vi">
+      <body className="bg-[#050816]">
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
