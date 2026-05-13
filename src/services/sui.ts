@@ -1,9 +1,23 @@
-import { getFullnodeUrl, SuiClient } from '@mysten/sui/client';
+import { SuiClient } from '@mysten/sui/client';
 import { Transaction } from '@mysten/sui/transactions';
 
-export const suiClient = new SuiClient({ url: getFullnodeUrl('mainnet') });
+export interface MemoryMetadata {
+  title: string;
+  description: string;
+  timestamp: number;
+  fileType: string;
+  size: number;
+}
 
-export async function createMemoryTx(blobId: string, metadata: any) {
+export const suiClient = new SuiClient({
+  url: process.env.NEXT_PUBLIC_TATUM_RPC || "https://sui-mainnet.gateway.tatum.io",
+});
+
+export function getSuiClient() {
+  return suiClient;
+}
+
+export async function createMemoryTx(blobId: string, metadata: MemoryMetadata) {
   const tx = new Transaction();
   // Sau này thay bằng packageId Move contract thật của bạn
   // Hiện tại dùng để demo
@@ -15,4 +29,16 @@ export async function createMemoryTx(blobId: string, metadata: any) {
     ],
   });
   return tx;
+}
+
+export async function executeTransaction(tx: Transaction, signer: any) {
+  const result = await suiClient.signAndExecuteTransaction({
+    transaction: tx,
+    signer,
+  });
+  return result;
+}
+
+export async function getTransactionStatus(digest: string) {
+  return await suiClient.getTransactionBlock({ digest });
 }
