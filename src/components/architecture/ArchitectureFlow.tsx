@@ -1,26 +1,51 @@
-export default function ArchitectureFlow() {
-  const items = [
-    { name: "Frontend App", icon: "🖥️" },
-    { name: "Walrus Storage Layer", icon: "📦" },
-    { name: "Sui Smart Contracts", icon: "🔗" },
-    { name: "Tatum RPC Gateway", icon: "⚡" },
-    { name: "WST AI Agent System", icon: "🤖" },
-  ];
+const items = [
+  "Frontend",
+  "Walrus",
+  "Sui",
+  "Tatum",
+  "AI Agent",
+];
 
+export default function ArchitectureFlow() {
   return (
-    <section className="py-24 bg-gray-50">
-      <div className="container mx-auto px-6 text-center">
-        <div className="eyebrow mb-4">ARCHITECTURE</div>
-        <h2 className="text-5xl font-bold mb-4">Built on Decentralized Infrastructure</h2>
-        
-        <div className="flex flex-wrap justify-center items-center gap-6 mt-16">
-          {items.map((item, i) => (
-            <div key={i} className="feature-card px-8 py-6 min-w-[180px]">
-              <div className="text-4xl mb-4">{item.icon}</div>
-              <p className="font-semibold">{item.name}</p>
+    <section
+      className="section"
+      id="architecture"
+    >
+      <div className="container">
+
+        <div className="section-box">
+
+          <div className="section-heading">
+
+            <div className="eyebrow">
+              ARCHITECTURE
             </div>
-          ))}
+
+            <h2>
+              Decentralized Infrastructure
+            </h2>
+
+          </div>
+
+          <div className="workflow">
+
+            {items.map((item) => (
+              <article key={item}>
+
+                <div className="step-icon">
+                  ✦
+                </div>
+
+                <h3>{item}</h3>
+
+              </article>
+            ))}
+
+          </div>
+
         </div>
+
       </div>
     </section>
   );

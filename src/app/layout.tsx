@@ -1,22 +1,33 @@
 import type { Metadata } from "next";
+
 import "./globals.css";
+
 import Providers from "./providers";
 
 export const metadata: Metadata = {
-  title: "WST-MEMORY — Wave Synaptic Transfer",
-  description: "AI-native decentralized memory protocol powered by Walrus • Sui • Tatum",
+  title:
+    "WST-Memory — Wave Synaptic Transfer",
+
+  description:
+    "AI-native decentralized memory protocol powered by Walrus, Sui, Tatum RPC, and AI retrieval.",
 };
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
-    <html lang="vi">
-      <body className="bg-[#050816]">
-        <Providers>{children}</Providers>
+    <html lang="en">
+
+      <body>
+
+        <Providers>
+          {children}
+        </Providers>
+
       </body>
+
     </html>
   );
 }

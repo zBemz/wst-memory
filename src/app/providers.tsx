@@ -14,13 +14,18 @@ import {
 
 const queryClient = new QueryClient();
 
+/* TATUM ENTERPRISE RPC */
 const networks = {
   mainnet: {
-    url: "https://fullnode.mainnet.sui.io",
+    url: "https://sui-mainnet.gateway.tatum.io",
   },
 
   testnet: {
-    url: "https://fullnode.testnet.sui.io",
+    url: "https://sui-testnet.gateway.tatum.io",
+  },
+
+  devnet: {
+    url: "https://sui-devnet.gateway.tatum.io",
   },
 };
 
@@ -31,16 +36,18 @@ export default function Providers({
 }) {
   return (
     <QueryClientProvider client={queryClient}>
+
       <SuiClientProvider
         networks={networks}
         defaultNetwork="mainnet"
       >
-        <WalletProvider
-          autoConnect
-        >
+
+        <WalletProvider autoConnect>
           {children}
         </WalletProvider>
+
       </SuiClientProvider>
+
     </QueryClientProvider>
   );
 }

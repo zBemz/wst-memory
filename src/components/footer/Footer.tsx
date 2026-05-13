@@ -1,57 +1,67 @@
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-white py-20">
-      <div className="container mx-auto px-6">
-        <div className="grid md:grid-cols-12 gap-12">
-          {/* Brand */}
-          <div className="md:col-span-5">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 bg-gradient-to-br from-amber-400 to-yellow-500 rounded-2xl flex items-center justify-center text-xl font-bold">WST</div>
-              <div>
-                <strong className="text-2xl">WST-MEMORY</strong>
-                <small className="block text-amber-400">WAVE SYNAPTIC TRANSFER</small>
-              </div>
+    <footer className="section">
+
+      <div className="container">
+
+        <div className="section-box">
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "2fr 1fr 1fr 1fr",
+              gap: "40px",
+            }}
+          >
+
+            <div>
+              <h2>WST-MEMORY</h2>
+
+              <p
+                style={{
+                  marginTop: 20,
+                  lineHeight: 1.8,
+                  color: "#64748b",
+                }}
+              >
+                AI-native decentralized memory protocol
+                powered by Walrus and Sui.
+              </p>
             </div>
-            <p className="text-gray-400 max-w-md">
-              AI-native decentralized memory protocol built on Walrus, secured by Sui, and connected through Tatum RPC.
-            </p>
-          </div>
 
-          {/* Links */}
-          <div className="md:col-span-2">
-            <h4 className="font-semibold mb-4">Product</h4>
-            <ul className="space-y-3 text-gray-400">
-              <li><a href="#features">Features</a></li>
-              <li><a href="/dashboard">Dashboard</a></li>
-              <li><a href="/upload">Upload</a></li>
-            </ul>
-          </div>
+            <div>
+              <h4>Product</h4>
+              <p>Features</p>
+              <p>Dashboard</p>
+              <p>Upload</p>
+            </div>
 
-          <div className="md:col-span-2">
-            <h4 className="font-semibold mb-4">Resources</h4>
-            <ul className="space-y-3 text-gray-400">
-              <li>Documentation</li>
-              <li>GitHub</li>
-              <li>Blog</li>
-            </ul>
-          </div>
+            <div>
+              <h4>Resources</h4>
+              <p>Documentation</p>
+              <p>Guides</p>
+              <p>Blog</p>
+            </div>
 
-          <div className="md:col-span-3">
-            <h4 className="font-semibold mb-4">Stay Updated</h4>
-            <div className="flex gap-2">
-              <input 
-                type="email" 
-                placeholder="Enter your email" 
-                className="bg-gray-800 border border-gray-700 rounded-2xl px-5 py-3 flex-1 focus:outline-none focus:border-amber-400"
+            <div>
+              <h4>Stay Updated</h4>
+
+              <input
+                placeholder="Enter your email"
+                style={{
+                  marginTop: 16,
+                  width: "100%",
+                  padding: "14px",
+                  borderRadius: "14px",
+                  border: "1px solid #e2e8f0",
+                }}
               />
-              <button className="bg-amber-400 text-black px-8 rounded-2xl font-semibold">→</button>
             </div>
+
           </div>
+
         </div>
 
-        <div className="border-t border-gray-800 mt-16 pt-8 text-center text-gray-500 text-sm">
-          © 2025 WST-Memory. All rights reserved. Built for Sui + Walrus Hackathon.
-        </div>
       </div>
     </footer>
   );
