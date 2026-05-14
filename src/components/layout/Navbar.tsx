@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { ConnectButton } from '@suiet/wallet-kit';
+import { WalletConnect } from '@/components/wallet/ConnectButton';
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -22,7 +22,9 @@ export default function Navbar() {
           <a href="#future">Future</a>
         </nav>
 
-        <ConnectButton className="btn btn-primary header-cta" />
+        <div className="header-cta">
+          <WalletConnect />
+        </div>
 
         {/* Mobile menu toggle + logic từ script.js */}
       </div>

@@ -1,4 +1,11 @@
-import type { MemoryItem } from "./MemoryList";
+interface MemoryItem {
+  id: string;
+  name: string;
+  type: "image" | "pdf" | "audio";
+  size: string;
+  uploaded: string;
+  thumbnail?: string;
+}
 
 import {
   FileText,

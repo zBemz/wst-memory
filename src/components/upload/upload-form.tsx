@@ -7,7 +7,6 @@ import UploadDropzone from "./UploadDropzone";
 import UploadProgress from "./UploadProgress";
 import UploadResult from "./UploadResult";
 
-import { uploadToWalrus } from "@/services/walrus";
 
 export default function UploadForm() {
   const account = useCurrentAccount();
@@ -34,17 +33,25 @@ export default function UploadForm() {
       setError(null);
       setProgress(10);
 
-      const buffer = await file.arrayBuffer();
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("address", account.address);
 
       setProgress(40);
 
-      const response = await uploadToWalrus(
-        new Uint8Array(buffer)
-      );
+      const response = await fetch("/api/upload", {
+        method: "POST",
+        body: formData,
+      });
 
       setProgress(80);
 
-      setResult(response);
+      if (!response.ok) {
+        throw new Error("Upload failed");
+      }
+
+      const payload = await response.json();
+      setResult(payload);
 
       setProgress(100);
     } catch (err) {

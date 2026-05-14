@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import { Upload, CheckCircle } from "lucide-react";
-import { uploadToWalrus } from "@/services/walrus";
 import { useCurrentAccount } from "@mysten/dapp-kit";
 
 export default function UploadForm() {
@@ -15,11 +14,15 @@ export default function UploadForm() {
     setUploading(true);
 
     try {
-      const arrayBuffer = await file.arrayBuffer();
-      const res = await uploadToWalrus(new Uint8Array(arrayBuffer));
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("address", account.address);
 
-      // TODO: Gọi Sui transaction để lưu metadata
-      setResult(res);
+      const response = await fetch("/api/upload", { method: "POST", body: formData });
+      if (!response.ok) throw new Error("Upload failed");
+
+      const payload = await response.json();
+      setResult(payload);
     } catch (err) {
       alert("Upload failed");
     } finally {
