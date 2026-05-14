@@ -1,12 +1,8 @@
 "use client";
-
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { SuiClientProvider, WalletProvider } from "@mysten/dapp-kit";
-import { getFullnodeUrl } from "@mysten/sui/client";
 
-const queryClient = new QueryClient({
-  defaultOptions: { queries: { staleTime: 60_000, retry: 2 } },
-});
+const queryClient = new QueryClient();
 
 const networks = {
   mainnet: { url: "https://sui-mainnet.gateway.tatum.io" },

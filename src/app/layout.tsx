@@ -1,37 +1,18 @@
-import type { Metadata } from 'next'
-import { Inter, Geist_Mono } from 'next/font/google'
-import './globals.css'
-
-const inter = Inter({ 
-  subsets: ['latin'],
-  variable: '--font-inter',
-})
-
-const geistMono = Geist_Mono({ 
-  subsets: ['latin'],
-  variable: '--font-geist-mono',
-})
+import type { Metadata } from "next";
+import Providers from "./providers";
+import "./globals.css";
 
 export const metadata: Metadata = {
-  title: 'WST-MEMORY | AI-Native Decentralized Memory Protocol',
-  description:
-    'Store, own, and interact with your memories, files, and digital identity on a decentralized infrastructure powered by Walrus, secured by Sui.',
-  generator: 'v0.app',
-}
+  title: "WST-Memory — Wave Synaptic Transfer",
+  description: "AI-native decentralized memory on Walrus + Sui + Tatum",
+};
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html
-      lang="en"
-      className={`${inter.variable} ${geistMono.variable} bg-background`}
-    >
-      <body className="font-sans antialiased min-h-screen">
-        {children}
+    <html lang="en">
+      <body>
+        <Providers>{children}</Providers>
       </body>
     </html>
-  )
+  );
 }

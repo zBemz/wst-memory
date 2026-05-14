@@ -1,48 +1,19 @@
-import { walrusClient } from "@/infrastructure/walrus/client";
+import { WalrusClient } from '@mysten/walrus';
 
-export interface UploadToWalrusOptions {
-  epochs?: number;
-  deletable?: boolean;
-}
+export const walrusClient = new WalrusClient({
+  aggregatorUrl: process.env.NEXT_PUBLIC_WALRUS_AGGREGATOR!,
+  publisherUrl: 'https://publisher.walrus.mainnet.sui.io',
+});
 
-export interface UploadToWalrusResult {
-  blobId: string;
-  url: string;
-  size: number;
-  uploadedAt: string;
-}
-
-export async function uploadToWalrus(
-  blob: Uint8Array,
-  options?: UploadToWalrusOptions
-): Promise<UploadToWalrusResult> {
+export async function uploadToWalrus(blob: Uint8Array, epochs = 5) {
   try {
-    if (!blob || blob.length === 0) {
-      throw new Error("Blob is empty.");
-    }
-
-    const result = await walrusClient.writeBlob({
-      blob,
-      deletable: options?.deletable ?? true,
-      epochs: options?.epochs ?? 5,
-    });
-
+    const result = await walrusClient.writeBlob({ blob, deletable: true, epochs });
     return {
       blobId: result.blobId,
-      url: `${
-        process.env.NEXT_PUBLIC_WALRUS_AGGREGATOR ??
-        "https://aggregator.walrus.mainnet.sui.io"
-      }/v1/blobs/${result.blobId}`,
-      size: blob.length,
-      uploadedAt: new Date().toISOString(),
+      url: `https://aggregator.walrus.mainnet.sui.io/v1/blobs/${result.blobId}`,
     };
-  } catch (error) {
-    console.error("Walrus upload failed:", error);
-
-    throw new Error(
-      error instanceof Error
-        ? error.message
-        : "Failed to upload to Walrus."
-    );
+  } catch (e) {
+    console.error("Walrus upload failed", e);
+    throw e;
   }
 }

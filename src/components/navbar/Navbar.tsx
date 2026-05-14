@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 
-import ConnectWallet from "@/components/wallet-button/connect-wallet";
+import ConnectWallet from "@/components/wallet/ConnectButton";
 
 export default function Navbar() {
   return (

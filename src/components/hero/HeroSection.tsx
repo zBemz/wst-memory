@@ -1,101 +1,49 @@
 "use client";
-
 import { ConnectButton } from "@mysten/dapp-kit";
+import BrainVisual from "./BrainVisual";
 
 export default function HeroSection() {
   return (
-    <section className="hero">
+    <section className="relative pt-32 pb-24 px-6">
+      <div className="container max-w-7xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          {/* Left Content */}
+          <div className="space-y-8">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/5 border border-amber-400/30 rounded-full text-amber-400 text-sm">
+              AI-NATIVE DECENTRALIZED MEMORY PROTOCOL
+            </div>
 
-      <div className="container hero-grid">
+            <h1 className="text-7xl lg:text-8xl font-black tracking-tighter leading-none">
+              Own Your <span className="bg-gradient-to-r from-amber-300 to-yellow-400 bg-clip-text text-transparent">AI Memory</span>
+            </h1>
 
-        <div className="hero-copy">
+            <p className="text-xl text-gray-300 max-w-lg">
+              Store, own, and interact with your memories, files, and digital identity on decentralized infrastructure powered by Walrus, secured by Sui, and connected through Tatum RPC.
+            </p>
 
-          <div className="eyebrow">
-            AI-NATIVE DECENTRALIZED MEMORY PROTOCOL
-          </div>
-
-          <h1>
-            Own Your <br />
-            <span>AI Memory</span>
-          </h1>
-
-          <p className="lead">
-            WST-Memory enables users to store,
-            retrieve, and interact with AI memories,
-            files, and conversations through Walrus,
-            Sui, and Tatum infrastructure.
-          </p>
-
-          <div className="hero-actions">
-
-            {/* REAL WALLET CONNECT */}
-            <div className="hero-wallet-btn">
+            <div className="flex flex-wrap gap-4">
               <ConnectButton />
+              <a href="/dashboard" className="px-8 py-4 bg-white text-black font-bold rounded-2xl hover:bg-amber-400 transition">
+                Launch Dashboard →
+              </a>
             </div>
 
-            {/* UPLOAD PAGE */}
-            <a
-              href="/upload"
-              className="secondary-btn"
-            >
-              Upload Memory
-            </a>
-
-            {/* DASHBOARD PAGE */}
-            <a
-              href="/dashboard"
-              className="ghost-btn"
-            >
-              Launch App →
-            </a>
-
+            <div className="flex items-center gap-8 text-sm pt-6 border-t border-white/10">
+              <div>Built on</div>
+              <div className="flex gap-6 text-amber-400">
+                <span>Walrus</span>
+                <span>Sui</span>
+                <span>Tatum</span>
+              </div>
+            </div>
           </div>
 
-          <div className="hero-badges">
-            <span>Walrus</span>
-            <span>Sui</span>
-            <span>Tatum</span>
-            <span>MCP</span>
+          {/* Right Visual */}
+          <div className="flex justify-center">
+            <BrainVisual />
           </div>
-
         </div>
-
-        <div className="hero-visual">
-
-          <div className="brain-stage">
-
-            <div className="brain-shell brain-shell-1" />
-            <div className="brain-shell brain-shell-2" />
-            <div className="brain-shell brain-shell-3" />
-
-            <div className="brain-core" />
-
-            <div className="wst-core">
-              WST
-            </div>
-
-            <div className="card-float card-float-a">
-              Walrus Storage
-            </div>
-
-            <div className="card-float card-float-b">
-              Sui Network
-            </div>
-
-            <div className="card-float card-float-c">
-              Tatum RPC
-            </div>
-
-            <div className="card-float card-float-d">
-              AI Agent
-            </div>
-
-          </div>
-
-        </div>
-
       </div>
-
     </section>
   );
 }
